@@ -1,0 +1,131 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="numbro-imports.html">
+
+<!--
+A molecule wrapper around Numbro.
+
+Examples:
+
+    <numbro value="1234567.89"></numbro>
+    <numbro currency culture="fr-FR" value="1234567.89" format="0.0a"></numbro>
+
+@demo demo/index.html
+-->
+<dom-module id="numbro-formatter">
+  <template>
+    <style>
+      :host {
+        display:    block;
+        box-sizing: border-box;
+      }
+      #prefix { @apply(--numbro-prefix); }
+      #midfix { @apply(--numbro-midfix); }
+      #suffix { @apply(--numbro-suffix); }
+    </style>
+    <span id="prefix"></span>
+    <span id="midfix"></span>
+    <span id="suffix"></span>
+  </template>
+
+  <script>
+    (function() {
+      var UPDATABLE_BINDINGS  = [ 'prefix', 'midfix', 'suffix']
+      Polymer({
+        is:         'numbro-formatter',
+        properties: {
+          /**
+           * A boolean attribute allowing to set up the element in currency
+           * mode. Based on the culture, the element will automatically choose
+           * a prefix and a suffix to go along with the final rendered value.
+           */
+          currency:   {
+            type:       Boolean,
+            value:      false
+          },
+          /**
+           * The culture to be used.
+           */
+          culture:    {
+            type:       String,
+            value:      'en-US'
+          },
+          /**
+           * The format to be used.
+           */
+          format:     {
+            type:       String,
+            value:      '0.00'
+          },
+          /**
+           * The value to be formatted.
+           */
+          value: {
+            type:       String,
+            value:      ''
+          },
+
+          /**
+           * Whenever either one of `culture` or `value` change, this is
+           * in charge of creating and caching a new formatter object.
+           */
+          formatter:  {
+            type:       Object,
+            computed:   '_computeFormatter(culture, value)'
+          },
+          /**
+           * Whenever the `currency` flag changes, this property is in charge
+           * of picking the correct method to call on the formatter.
+           */
+          method:     {
+            type:       String,
+            computed:   '_computeMethod(currency)'
+          },
+          /**
+           * This property stores the formatted string based on all other
+           * properties: when either one of `culture`, `value`, `currency` or
+           * `format` changes, the `formatted` property will be updated.
+           */
+          formatted:  {
+            type:       String,
+            computed:   '_computeFormatted(formatter, method, format)'
+          },
+        },
+        observers: [ '_render(formatted)' ],
+
+        /**
+         * Whenever either one of `culture` or `value` change, this is
+         * in charge of creating and caching a new formatter object.
+         */
+        _computeFormatter: function(culture, value) {
+          return numbro.culture(culture)(value);
+        },
+        /**
+         * Whenever the `currency` flag changes, this property is in charge
+         * of picking the correct method to call on the formatter.
+         */
+        _computeMethod: function(currency) {
+          return currency ? 'formatCurrency' : 'format';
+        },
+        /**
+         * This property stores the formatted string based on all other
+         * properties: when either one of `culture`, `value`, `currency` or
+         * `format` changes, the `formatted` property will be updated.
+         */
+        _computeFormatted: function(formatter, method, format) {
+          return formatter[method](format);
+        },
+
+        /**
+         * Whenever the `formatted` property changes, we want to update our DOM
+         * to reflect the resulting value. This listened callback does that.
+         */
+        _render: function(formatted) {
+          // Split the formatted result into 3 groups.
+          var split = /([^\.,\d]*)([\.,\d]*)(\D*)/i.exec(formatted).splice(1);
+          for (var i=0; i<UPDATABLE_BINDINGS.length; ++i)
+            this.$[UPDATABLE_BINDINGS[i]].innerText = split[i];
+        }
+      });
+    })();
+  </script>
+</dom-module>

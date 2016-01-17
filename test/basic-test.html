@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <!-- Component to be tested. -->
+    <link rel="import" href="../numbro-formatter.html">
+  </head>
+  <body>
+
+    <test-fixture id="NumbroFormatterFixture">
+      <template>
+        <numbro-formatter currency value="1234567.89" culture="en-US" format="0.0a"></numbro-formatter>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('numbro-formatter', function() {
+        var elMain;
+        setup(function() {
+          elMain    = fixture('NumbroFormatterFixture');
+        });
+
+        test('keeps its initial value', function() {
+          assert.equal(elMain.value, '1234567.89');
+        });
+        test('changes in real time', function() {
+          elMain.value  = '9876543.21';
+          assert.equal(elMain.formatted, '$9.9m');
+        });
+
+        test('has the correct formatted result', function() {
+          assert.equal(elMain.formatted, '$1.2m');
+        });
+        test('has the correct prefix', function() {
+          assert.equal(elMain.$.prefix.innerHTML, '$')
+        });
+        test('has the correct midfix', function() {
+          assert.equal(elMain.$.midfix.innerHTML, '1.2')
+        });
+        test('has the correct suffix', function() {
+          assert.equal(elMain.$.suffix.innerHTML, 'm')
+        });
+      });
+    </script>
+
+  </body>
+</html>
