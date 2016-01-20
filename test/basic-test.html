@@ -36,13 +36,13 @@
           assert.equal(elMain.formatted, '$1.2m');
         });
         test('has the correct prefix', function() {
-          assert.equal(elMain.$.prefix.innerHTML, '$')
+          assert.equal(elMain.$.prefix.innerText, '$')
         });
         test('has the correct midfix', function() {
-          assert.equal(elMain.$.midfix.innerHTML, '1.2')
+          assert.equal(elMain.$.midfix.innerText, '1.2')
         });
         test('has the correct suffix', function() {
-          assert.equal(elMain.$.suffix.innerHTML, 'm')
+          assert.equal(elMain.$.suffix.innerText, 'm')
         });
       });
     </script>
