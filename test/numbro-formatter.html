@@ -35,13 +35,13 @@
         test('has the correct formatted result', function() {
           assert.equal(elMain.formatted, '$1.2m');
         });
-        test('has the correct prefix', function() {
+        test('renders the formatted prefix', function() {
           assert.equal(elMain.$.prefix.innerText, '$')
         });
-        test('has the correct midfix', function() {
+        test('renders the formatted midfix', function() {
           assert.equal(elMain.$.midfix.innerText, '1.2')
         });
-        test('has the correct suffix', function() {
+        test('renders the formatted suffix', function() {
           assert.equal(elMain.$.suffix.innerText, 'm')
         });
       });
