@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>numbro-formatter Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../numbro-formatter.html">
+  </head>
+  <body unresolved>
+    <div>
+      <h2>Simplest Example</h2>
+      <numbro-formatter value="1234567.89"></numbro-formatter>
+    </div>
+    <div>
+      <h2>Currency / Culture</h2>
+      <numbro-formatter value="1234567.89" currency culture="fr-FR" format="0.00a"></numbro-formatter>
+      <numbro-formatter value="1234567.89" currency culture="en-US" format="0a"></numbro-formatter>
+    </div>
+  </body>
+</html>

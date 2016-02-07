@@ -1,0 +1,36 @@
+{
+  "name": "numbro-formatter",
+  "authors": [
+    "HERAULT-MARTIN Pierre<HicksCorp@GMail.com>"
+  ],
+  "description": "A molecule element around Numbro.",
+  "keywords": [
+    "polymer",
+    "numbro"
+  ],
+  "main": "numbro.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/hickscorp/polymer-numbro-formatter",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "numbro": "~1.6.2"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "63847baff4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "63847baff41064333c845f91cb890856bb8133cb"
+  },
+  "_source": "git@github.com:sudoerslda/numbro-formatter.git",
+  "_target": "master",
+  "_originalSource": "git@github.com:sudoerslda/numbro-formatter",
+  "_direct": true
+}
