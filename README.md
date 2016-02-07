@@ -2,6 +2,9 @@
 
 A molecule wrapper around the Numbro.js library.
 
+Documentation is [here](http://sudoerslda.github.io/numbro-formatter/components/numbro-formatter/)
+and demo is [here](http://sudoerslda.github.io/numbro-formatter/components/numbro-formatter/demo/).
+
 Example usage:
 
 ```
